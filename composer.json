@@ -1,0 +1,21 @@
+{
+    "name": "kordero/enbici",
+    "type": "library",
+    "description": "enbici, MVC framework",
+    "homepage": "https://github.com/kordero/enbici",
+    "keywords": ["mvc", "model", "view", "controller", "model-view-controller"],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Lucas Crisman",
+            "homepage": "https://github.com/kordero",
+            "email": "kordero@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "MVC\\": "lib/" }
+    }
+}
