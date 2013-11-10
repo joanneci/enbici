@@ -1,8 +1,6 @@
 <?php
 
-namespace MVC\View;
-
-use MVC\Object;
+namespace enbici\MVC;
 
 class View extends Object {
     public function __construct() {

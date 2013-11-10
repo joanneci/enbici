@@ -1,8 +1,6 @@
 <?php
 
-namespace MVC\Controller;
-
-use MVC\Object;
+namespace enbici\MVC;
 
 class Controller extends Object {
     public function __construct() {

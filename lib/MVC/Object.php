@@ -1,9 +1,10 @@
 <?php
 
-namespace MVC;
+namespace enbici\MVC;
 
 class Object {
     public function __construct() {
         
     }
+
 }
