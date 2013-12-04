@@ -14,11 +14,13 @@ class Dispatcher extends Object {
             'view'       => '/view',
             'controller' => '/controller'
         ), $options);
-
         extract($options);
-        $this->model = is_readable($base.$model) ? $base.$model : $model;
-        $this->view = is_readable($base.$view) ? $base.$view : $view;
-        $this->controller = is_readable($base.$controller) ? $base.$controller : $controller;
+        // absolute paths can be project or filesystem relative, so let's first
+        // check if it exists somewhere in the project, otherwise will assume
+        // it's an absolute path relative to the filesystem
+        $this->model = (is_readable($base.$model) ? $base.$model : $model);
+        $this->view = (is_readable($base.$view) ? $base.$view : $view);
+        $this->controller = (is_readable($base.$controller) ? $base.$controller : $controller);
     }
 
     protected function guessBasePath() {
@@ -73,11 +75,11 @@ class Dispatcher extends Object {
         if (isset($params['url'])) {
             $data = preg_split('/\//', $params['url']);
             $controller = ($data[0] ? ucfirst(strtolower($data[0])) : '') . 'Controller';
-            $method = $data[1] | 'index';
             if (!class_exists($controller)) {
                 return false;
             }
             $Controller = new $controller();
+            $method = $data[1] ? $data[1] : 'index';
             if (method_exists($Controller, $method)) {
                 $params = array_slice($data, 2);
                 call_user_func_array(array($Controller, $method), $params);
